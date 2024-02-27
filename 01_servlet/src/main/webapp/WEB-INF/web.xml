@@ -19,4 +19,14 @@
     <servlet-name>HelloWorld</servlet-name>
     <url-pattern>/HelloWorld</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LifeCycle</display-name>
+    <servlet-name>LifeCycle</servlet-name>
+    <servlet-class>pkg01_lifecycle.LifeCycle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LifeCycle</servlet-name>
+    <url-pattern>/cycle</url-pattern>
+  </servlet-mapping>
 </web-app>
