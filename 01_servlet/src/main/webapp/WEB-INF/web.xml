@@ -29,4 +29,14 @@
     <servlet-name>LifeCycle</servlet-name>
     <url-pattern>/cycle</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyRequest</display-name>
+    <servlet-name>MyRequest</servlet-name>
+    <servlet-class>pkg02_request.MyRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyRequest</servlet-name>
+    <url-pattern>/request</url-pattern>
+  </servlet-mapping>
 </web-app>

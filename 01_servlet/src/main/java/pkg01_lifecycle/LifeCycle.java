@@ -70,24 +70,64 @@ public class LifeCycle extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 * 
+	 * service()
+	 * 1. 클라이언트로부터 요청을 받을 수 있다. (매개변수 HttpServletRequest request)
+	 * 2. 클라이언트에게 응답할 수 있다.        (매개변수 HttpServletResponse response)
+	 * 3. service() 메소드가 있으면 여기서 요청과 응답을 해결한다.
+	 * 4. service() 메소드가 없으면 doGet() 또는 doPost() 메소드가 요청에 따라 호출된다.
+	 */    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("service() 메소드 호출");
+		// System.out.println(request.getMethod());
+		switch(request.getMethod()) {
+		case "GET":
+		  doGet(request, response);
+		  break;
+		case "POST":
+		  doPost(request, response);
+		  break;
+		  
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
+	 * doGet()
+	 * 1. GET 방식의 요청이 발생되면 자동으로 호출되는 메소드이다.
+	 * 2. GET 방식의 요청
+	 *   1) <a href="http://localhost:8080/servlet/life">
+	 *      <a href="/servlet/life">
+	 *   2) <form method="GET" action="servlet/life">
+	 *   3) location.href='/servlet/life'
+	 *   4) window.open('/servlet/life')
+	 *   5) $.ajax({
+	 *         type: 'GET',
+	 *         url: '/servlet/life',
+	 *         ...
+	 *       })
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("doGet() 메소드 호출");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 
+	 * doPost()
+   * 1. POST 방식의 요청이 발생되면 자동으로 호출되는 메소드이다.
+   * 2. POST 방식의 요청
+   *   1) <form method="POST" action="servlet/life">
+   *   2) $.ajax({
+   *         type: 'POST',
+   *         url: '/servlet/life',
+   *         ...
+   *      })
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("doPost() 메소드 호출");
 		doGet(request, response);
 	}
 
