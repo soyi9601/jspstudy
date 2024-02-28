@@ -32,7 +32,7 @@ public class MyRequest extends HttpServlet {
 	  /* Optional<T> 클래스를 이용한 null 처리 */
 	  String strNumber2 = request.getParameter("number2");
 	  Optional<String> opt = Optional.ofNullable(strNumber2);
-	  double number2 = Double.parseDouble(opt.orElse("0").isEmpty() ? "0" : strNumber2);
+	  double number2 = Double.parseDouble(opt.orElse("0").isEmpty() ? "0" : opt.orElse("0"));
 	  System.out.println(number2);
 	  
 	}
