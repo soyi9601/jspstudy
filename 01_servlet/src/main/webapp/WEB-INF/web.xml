@@ -39,4 +39,54 @@
     <servlet-name>MyRequest</servlet-name>
     <url-pattern>/request</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyResponse</display-name>
+    <servlet-name>MyResponse</servlet-name>
+    <servlet-class>pkg03_response.MyResponse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyResponse</servlet-name>
+    <url-pattern>/response</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StopOver</display-name>
+    <servlet-name>StopOver</servlet-name>
+    <servlet-class>pkg04_forward.StopOver</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StopOver</servlet-name>
+    <url-pattern>/stopover</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Destination</display-name>
+    <servlet-name>Destination</servlet-name>
+    <servlet-class>pkg04_forward.Destination</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Destination</servlet-name>
+    <url-pattern>/destination</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Destination1</display-name>
+    <servlet-name>Destination1</servlet-name>
+    <servlet-class>pkg05_redirect.Destination1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Destination1</servlet-name>
+    <url-pattern>/destination1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Destination2</display-name>
+    <servlet-name>Destination2</servlet-name>
+    <servlet-class>pkg05_redirect.Destination2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Destination2</servlet-name>
+    <url-pattern>/destination2</url-pattern>
+  </servlet-mapping>
 </web-app>

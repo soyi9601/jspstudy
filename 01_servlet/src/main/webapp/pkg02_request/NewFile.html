@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -16,6 +17,91 @@
   
   var link = document.getElementById('link');
   link.href = '/servlet/request?number=' + link.dataset.number + '&number2=' + link.dataset.number2;
+  
+  </script>
+  
+  <!-- JavaScript : location  객체 요청 -->
+  <div data-number="10">
+    <button type="button" id="btn" data-number2="1.5">요청</button>
+  </div>
+  <script>
+    // jQuery 이용하기
+    let $btn = $('#btn');
+    $btn.on('click', (evt)=>{
+    	let number = $btn.parent().data('number');
+    	let number2 = $btn.data('number2');
+    	location.href = `/servlet/request?number=${number}&number2=${number2}`;
+    })
+  </script>
+  
+  <!-- <form>태그 요청 // method 는 대문자로 적어주기. 어디선가 대문자가 꼭 필요할 수 있음 --> 
+  <!-- id 는 프론트에서의 식별자, name 은 백단에서의 식별자 -->
+  <form id="frm" method="POST" action="/servlet/request">
+    <div class="inp-wrap">
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div class="inp-wrap">
+      <label for="email">이메일</label>
+      <input type="text" name="email" id="email">
+    </div>
+    <!-- radio, checkbox는 value 를 넣어줘야 백단에서 확인할 수 있음. 넣어주지 않으면 on 으로만 들어옴
+    option 에 value 를 넣어주면 안에 텍스트가 아닌 value 값이 들어옴 -->
+    <div class="inp-wrap">
+      <input type="radio" name="gender" id="none" value="none" checked>
+      <label for="none">선택안함</label>
+      <input type="radio" name="gender" id="man" value="man">
+      <label for="man">남자</label>
+      <input type="radio" name="gender" id="woman" value="woman">
+      <label for="woman">여자</label>
+    </div>
+    <div class="inp-wrap">      
+      <input type="checkbox" name="hobbies" id="game" value="game">
+      <label for="game">게임</label>
+      <input type="checkbox" name="hobbies" id="cook" value="cook">
+      <label for="cook">요리</label>
+      <input type="checkbox" name="hobbies" id="travel" value="travel">
+      <label for="travel">여행</label>
+    </div>
+    <div class="inp-wrap">
+      <select name="mobile">
+        <option value="1">SKT</option>
+        <option value="2">KT</option>
+        <option value="3">LGU+</option>
+      </select>
+      <input type="text" name="mobile">
+    </div>
+    <div class="btn-wrap">
+      <button type="submit">전송</button>
+      <button type="reset">다시입력</button>
+    </div>
+    <!-- 빈문자열, null 값이 서버쪽으로 들어오지 않도록 확인해줘야함. -->
+  </form>
+  
+  <script>
+  
+    document.getElementById('frm').addEventListener('submit', (evt)=>{
+    	
+    	let name = document.getElementById('name');
+    	
+    	if(name.value === '') {
+    		alert('이름은 필수입니다.');
+    		name.focus();
+    		evt.preventDefault();   // submit 방지
+    		return;                 // 함수 종료
+    	}
+    	
+    	// 이메일 정규식 검사
+    	let email = document.getElementById('email');
+    	let regEmail = /^[A-Za-z0-9-_]{2,}@[A-Za-z0-9]{2,}(\.[A-Za-z]{2,6}){1,2}$/;
+    	if(regEmail.test(email).value === false) {
+  		  alert('이메일 형식이 올바르지 않습니다.');
+        email.focus();
+        evt.preventDefault();
+        return;
+    	} ;
+    	
+    })
   
   </script>
   

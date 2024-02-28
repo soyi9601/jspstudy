@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<style>
+  .btn-wrap {
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+  <form id="frm"
+        method="POST" 
+        enctype="multipart/form-data">
+        
+    <div class="inp-wrap">
+      <label for="title">제목</label>
+      <input type="text" name="title" id="title">
+    </div>
+    
+    <div class="inp-wrap">
+      <label for="attach-file">첨부</label>
+      <input type="file" name="attach-file" id="attach-file">
+    </div>
+    <div class="btn-wrap">
+      <button type="submit">전송</button>
+      <button type="reset">다시 입력</button>
+    </div>
+    
+  </form>
+  
+  <hr>
+  
+  <div id="preview">미리보기 영역</div>
+  
+
+</body>
+</html>
