@@ -89,4 +89,54 @@
     <servlet-name>Destination2</servlet-name>
     <url-pattern>/destination2</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Upload</display-name>
+    <servlet-name>Upload</servlet-name>
+    <servlet-class>pkg06_upload.Upload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Download</display-name>
+    <servlet-name>Download</servlet-name>
+    <servlet-class>pkg06_upload.Download</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Download</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SaveCookie</display-name>
+    <servlet-name>SaveCookie</servlet-name>
+    <servlet-class>pkg07_Cookie.SaveCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveCookie</servlet-name>
+    <url-pattern>/saveCookie</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReadCookie</display-name>
+    <servlet-name>ReadCookie</servlet-name>
+    <servlet-class>pkg07_Cookie.ReadCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadCookie</servlet-name>
+    <url-pattern>/readCookie</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteCookie</display-name>
+    <servlet-name>DeleteCookie</servlet-name>
+    <servlet-class>pkg07_Cookie.DeleteCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCookie</servlet-name>
+    <url-pattern>/deleteCookie</url-pattern>
+  </servlet-mapping>
 </web-app>

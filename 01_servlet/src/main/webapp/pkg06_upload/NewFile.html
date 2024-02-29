@@ -12,8 +12,9 @@
 </head>
 <body>
 
-  <form id="frm"
+  <form id="frm" 
         method="POST" 
+        action="/servlet/upload" 
         enctype="multipart/form-data">
         
     <div class="inp-wrap">
@@ -22,8 +23,8 @@
     </div>
     
     <div class="inp-wrap">
-      <label for="attach-file">첨부</label>
-      <input type="file" name="attach-file" id="attach-file">
+      <label for="file">첨부</label>
+      <input type="file" name="file" id="file">
     </div>
     <div class="btn-wrap">
       <button type="submit">전송</button>
@@ -34,7 +35,48 @@
   
   <hr>
   
-  <div id="preview">미리보기 영역</div>
+  <div id="preview"><h3>미리보기 영역</h3></div>
+  
+  <script>
+  
+    function isOversize(file) {
+    	const limit = 1024 * 1024 * 5;
+    	return file.size > limit;    	
+    }
+    function isImage(file) {
+    	const contentType = file.type;
+    	return contentType.startsWith('image');
+    }
+    function preview(file) {
+    	const fileReader = new FileReader();
+    	fileReader.readAsDataURL(file);
+    	fileReader.addEventListener('load', (evt)=>{
+    		// console.log(evt.target);
+    		document.getElementById('preview').innerHTML = `<h3>미리보기 영역</h3><div><img src="${evt.target.result}" width="50px"></div>`;
+    	})
+    }
+    
+    function checkFile(inp) {
+    	if(isOversize(inp.files[0])) {
+    		alert('첨부 파일의 최대 크기는 5MB입니다.');
+    		inp.value = '';   // file type 의 value 는 파일을 의미한다. 빈 문자열은 파일을 삭제한 것.
+    		return;
+    	}
+    		
+    	if(!isImage(inp.files[0])) {
+    		alert('이미지 파일만 첨부할 수 있습니다.');
+    		inp.value = '';
+    		return;
+    	}
+    	preview(inp.files[0]);
+    }
+    
+    document.getElementById('file').addEventListener('change', (evt)=>{
+    	checkFile(evt.target);
+    })
+  
+  </script>
+  
   
 
 </body>
