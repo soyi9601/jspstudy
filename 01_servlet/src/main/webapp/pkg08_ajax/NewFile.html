@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div>
+    <button type="button" id="btn1">정보가져오기</button>
+  </div>
+  
+  <table border="1">
+    <tbody id="contents1"></tbody>
+  </table>
+  <hr>
+  
+  <div>
+    <button type="button" id="btn2">정보가져오기</button>
+  </div>
+  
+  <table border="1">
+    <tbody id="contents2"></tbody>
+  </table>
+  
+  <script>
+  
+    const getData2 = ()=>{
+    	$.ajax({
+    		/* 요청 */
+    		type: 'GET',
+    		url: '/servlet/getData2',
+    		/* 응답 */
+    		dataType: 'JSON',   // 'xml', 'json'
+    	}).done((resData)=>{
+    		/* $.each(배열, 함수(인덱스,요소){}) */
+    		$.each(resData.items.item, (i, elem)=>{
+    			let str = '<tr>';
+    			str += '<td>' + elem.occrrnc_dt + '</td>';
+    			str += '<td>' + elem.dth_cnt + '</td>';
+    			str += '<td>' + elem.injpsn_cnt + '</td>';
+    			str += '</tr>';
+    			$('#contents2').append(str);
+    		})
+    	}).fail((jqXHR)=>{
+    		alert(jqXHR.responseText + '(' + jqXHR.status + ')');
+    	})
+    }
+    
+    $('#btn2').on('click', getData2);
+  
+  </script>
+  
+  <script>
+  
+    // XML 데이터 요청
+    
+    const getData1 = ()=>{
+    	
+    	const options = {
+    		method: 'GET'    			
+    	}
+    	
+    	fetch('/servlet/getData1', options)
+    	 /* .then((response)=>{
+    		 if(response.ok){
+    			 return reponse.text();
+    		 }
+    	 }) */
+    	 
+    	 .then(response=> response.text())
+    	 .then(resData=>{
+    		 // String type
+    		 const domParser = new DOMParser();
+    		 const xmlDoc = domParser.parseFromString(resData, 'application/xml');
+    		 
+    		 // <tbody id="contents1"></tbody>
+    		 const contents1 = document.getElementById('contents1');
+    		 contents1.innerHTML = '';
+    		 
+    		// <weather year="2024" month="03" day="04" hour="10"
+    		 const weather = xmlDoc.getElementsByTagName('weather')[0];
+    		 contents1.innerHTML += '<tr><td colspan="3">' 
+    			                   + weather.getAttribute('year') + '-' 
+    			                   + weather.getAttribute('month') + '-' 
+    			                   + weather.getAttribute('day') + '&nbsp;'
+    			                   + weather.getAttribute('hour') + '시</td></tr>';
+    			// <local desc="맑음" ta="4.5">속초</local>
+    			const locals = xmlDoc.getElementsByTagName('local');
+    			for(let i = 0; i < locals.length; i++) {
+    				let str = '<tr>';
+    				str += '<td>' + locals[i].textContent + '</td>';
+    				str += '<td>' + locals[i].getAttribute('desc') + '</td>';
+    				str += '<td>' + locals[i].getAttribute('ta') + '</td>';
+    				str += '</tr>';
+    				contents1.innerHTML += str;
+    			}
+    	 })
+    	
+    }
+    
+    document.getElementById("btn1").addEventListener('click', getData1);
+  
+  </script>
+  
+  
+  
+  
+</body>
+</html>
