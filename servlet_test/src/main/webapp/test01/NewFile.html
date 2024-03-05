@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+  <form id="frm" method="POST" action="/test/request">
+    <div class="inp-wrap">
+      <label for="id">아이디</label><br/>
+      <input type="text" name="id" id="id">
+      <span>@naver.com</span>
+    </div>
+    <div>
+      <label for="pasword">비밀번호</label><br/>
+      <input type="password" name="password" id="password">
+    </div>
+    <div>
+      <label for="password_chk">비밀번호 재확인</label><br/>
+      <input type="password" name="password_chk" id="password_chk">
+    </div>
+    <div>
+      <label for="name">이름</label>      <br/>
+      <input type="text" name="name" id="name">
+    </div>
+    <div>
+      <label>생년월일</label><br/>
+      <input type="text" name="year" placeholder="년(4)자">
+       <select name="month">
+        <option value="1">1월</option>
+        <option value="2">2월</option>
+        <option value="3">3월</option>
+        <option value="4">4월</option>
+        <option value="5">5월</option>
+        <option value="6">6월</option>
+        <option value="7">7월</option>
+        <option value="8">8월</option>
+        <option value="9">9월</option>
+        <option value="10">10월</option>
+        <option value="11">11월</option>
+        <option value="12">12월</option>
+      </select>
+       <input type="text" name="day" placeholder="일">
+    </div>
+    <div>
+      <label>성별</label><br/>
+      <select name="gender">
+        <option value="성별">성별</option>
+        <option value="남자">남</option>
+        <option value="여자">여</option>
+      </select>
+    </div>
+    <div>
+      <label>본인 확인 이메일(선택)</label><br/>
+      <input type="text" name="email">
+    </div>
+    
+    <div>
+      <button type="submit">가입하기</button>
+    </div>
+  </form>
+  
+  <script>
+  
+    document.getElementById('frm').addEventListener('submit', (evt)=>{
+    	let id = document.getElementById('id');
+    	let pw = document.getElementById('password');
+    	
+    	if(id.value === '') {
+    		alert('아이디는 필수입니다.');
+    		id.focus();
+    		evt.preventDefault();
+    		return;
+    	} else if(pw.value === '') {
+    		alert('비밀번호를 확인하세요.');
+    		pw.focus();
+    		evt.preventDefault();
+    		return;
+    	}
+    	    	
+    })
+  </script>
+
+</body>
+</html>
