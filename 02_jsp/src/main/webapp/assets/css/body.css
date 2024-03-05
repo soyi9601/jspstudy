@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.body-wrap {
+    height: 500px;
+    text-align: center;
+}
+.body-wrap h1 {
+  font-weight: 500;
+  color: olive;
+  position: absolute;
+  top: 30%;
+  left: calc(50% - 100px);
+  width: 200px;
+}

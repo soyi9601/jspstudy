@@ -22,7 +22,7 @@ public class Upload extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	  // 업로드 경로 (톰캣 내부 경로)
+	  // 업로드 경로 (톰캣 내부 경로)   C:\GDJ77\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0
 	  String uploadPath = request.getServletContext().getRealPath("upload");
 	  File uploadDir = new File(uploadPath);
 	  if(!uploadDir.exists()) {
