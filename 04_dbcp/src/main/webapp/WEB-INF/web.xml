@@ -19,4 +19,13 @@
     <servlet-name>BoardController</servlet-name>
     <url-pattern>*.brd</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>BoardFilter</display-name>
+    <filter-name>BoardFilter</filter-name>
+    <filter-class>com.gdu.prj.filter.BoardFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>BoardFilter</filter-name>
+    <url-pattern>*.brd</url-pattern>
+  </filter-mapping>
 </web-app>

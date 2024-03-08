@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class ActionForward {
   private String view;
   private boolean isRedirect;
+  // isRedirect true = redirect, false = forward
+  // boolean 의 기본값은 false
 }
