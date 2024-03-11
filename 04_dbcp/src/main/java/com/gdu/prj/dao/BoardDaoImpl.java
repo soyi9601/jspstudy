@@ -120,12 +120,17 @@ public class BoardDaoImpl implements BoardDao {
   }
 
   @Override
-  public List<BoardDto> selectBoardList(Map<String, Object> map) {
+  public List<BoardDto> selectBoardList(Map<String, Object> params) {
     List<BoardDto> boardList = new ArrayList<>();
     try {
       con = dataSource.getConnection();
-      String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT FROM BOARD_T ORDER BY BOARD_NO DESC";
+      String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT"
+                 + "  FROM (SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NO " + params.get("sort") + ") AS RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT"
+                 + "          FROM BOARD_T)"
+                 + " WHERE RN BETWEEN ? AND ?";
       ps = con.prepareStatement(sql);
+      ps.setInt(1, (int)params.get("begin"));
+      ps.setInt(2, (int)params.get("end"));
       rs = ps.executeQuery();     // rs = resultset
       // select 결과가 몇건이던지 간에 rs.next 는 갯수만큼 호출해야함. 있는만큼 호출하기 위해 반복문으로 돌림. 한줄씩 나와야함
       // 부르는 순서는 sql 쿼리문에 보고 순서대로 불러줘야함
