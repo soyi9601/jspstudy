@@ -56,10 +56,11 @@
   
   <update id="updateBoard"
           parameterType="com.gdu.prj.dto.BoardDto">
-     UPDATE BOARD_T SET TITLE = #{title}
-                      , CONTENTS = #{contents}
-                      , MODIFIED_AT = CURRENT_DATE
-      WEHRE BOARD_NO = #{board_no}
+    UPDATE BOARD_T
+       SET TITLE = #{title}
+         , CONTENTS = #{contents}
+         , MODIFIED_AT = CURRENT_DATE
+     WHERE BOARD_NO = #{board_no}
   </update>
   
   <delete id="deleteBoard"
@@ -72,11 +73,13 @@
   <select id="selectBoardList"
           parameterType="Map"
           resultType="com.gdu.prj.dto.BoardDto">
-    SELECT RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATE_AT
-      FROM (SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NO ${sort}) AS RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATE_AT
+    SELECT RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT
+      FROM (SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NO ${sort}) AS RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT
               FROM BOARD_T)
-     WHERE RN BETWEEN #{begin} AND #{end}   
-     <!-- 
+     WHERE RN BETWEEN #{begin} AND #{end}
+  </select>
+  
+  <!-- 
      #{} -> 문자 처리를 하는 것. mybatis 전용
      ex) where rn between '1' and '20'  
      oracle 에서 '숫자'는 가능하지만 sort 는 order by 'desc' 로 쿼리 문법 오류가 남.
@@ -84,7 +87,6 @@
      변수 처리는 #{}
      쿼리문 자체 ${}
      -->
-  </select>
   
   <select id="getBoardCount"
           resultType="int">
@@ -93,10 +95,10 @@
   </select>
   
   <select id="selectBoardByNo"
-          resultType="com.gdu.prj.dto.BoardDto">  
-    SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CURRENT_AT
+          resultType="com.gdu.prj.dto.BoardDto">
+    SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT
       FROM BOARD_T
-     WHERE BOARD_NO = #{board_no}          
+     WHERE BOARD_NO = #{board_no}
   </select>
   
 </mapper>
